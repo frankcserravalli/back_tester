@@ -1,0 +1,37 @@
+<%- model_class = Security -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:symbol) %>:</strong></dt>
+  <dd><%= @security.symbol %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:type) %>:</strong></dt>
+  <dd><%= @security.type %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:strike) %>:</strong></dt>
+  <dd><%= @security.strike %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:currency) %>:</strong></dt>
+  <dd><%= @security.currency %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:multiplier) %>:</strong></dt>
+  <dd><%= @security.multiplier %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:expiry) %>:</strong></dt>
+  <dd><%= @security.expiry %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:exchange) %>:</strong></dt>
+  <dd><%= @security.exchange %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:rights) %>:</strong></dt>
+  <dd><%= @security.rights %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:is_active) %>:</strong></dt>
+  <dd><%= @security.is_active %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              securities_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_security_path(@security), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              security_path(@security),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

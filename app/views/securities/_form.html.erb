@@ -1,0 +1,62 @@
+<%= form_for @security, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :symbol, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :symbol, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :type, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :type, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :strike, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :strike, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :currency, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :currency, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :multiplier, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :multiplier, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :expiry, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :expiry, :class => 'date_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :exchange, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :exchange, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :rights, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :rights, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :is_active, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :is_active, :class => 'check_box' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                securities_path, :class => 'btn' %>
+  </div>
+<% end %>

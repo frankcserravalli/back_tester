@@ -1,0 +1,52 @@
+<%- model_class = Security -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:symbol) %></th>
+      <th><%= model_class.human_attribute_name(:type) %></th>
+      <th><%= model_class.human_attribute_name(:strike) %></th>
+      <th><%= model_class.human_attribute_name(:currency) %></th>
+      <th><%= model_class.human_attribute_name(:multiplier) %></th>
+      <th><%= model_class.human_attribute_name(:expiry) %></th>
+      <th><%= model_class.human_attribute_name(:exchange) %></th>
+      <th><%= model_class.human_attribute_name(:rights) %></th>
+      <th><%= model_class.human_attribute_name(:is_active) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @securities.each do |security| %>
+      <tr>
+        <td><%= link_to security.id, security_path(security) %></td>
+        <td><%= security.symbol %></td>
+        <td><%= security.type %></td>
+        <td><%= security.strike %></td>
+        <td><%= security.currency %></td>
+        <td><%= security.multiplier %></td>
+        <td><%= security.expiry %></td>
+        <td><%= security.exchange %></td>
+        <td><%= security.rights %></td>
+        <td><%= security.is_active %></td>
+        <td><%=l security.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_security_path(security), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      security_path(security),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_security_path,
+            :class => 'btn btn-primary' %>

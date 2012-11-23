@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  symbol: MyString
+  type: 
+  strike: 1.5
+  currency: MyString
+  multiplier: 1
+  expiry: 2012-11-22
+  exchange: MyString
+  rights: MyString
+  is_active: false
+
+two:
+  symbol: MyString
+  type: 
+  strike: 1.5
+  currency: MyString
+  multiplier: 1
+  expiry: 2012-11-22
+  exchange: MyString
+  rights: MyString
+  is_active: false
