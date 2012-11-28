@@ -12,6 +12,6 @@ class CreateSecurities < ActiveRecord::Migration
       t.boolean :is_active  # true if we want to gather quotes automatically
       t.timestamps
     end
-    add_index :securities, :symbol
+    add_index :securities, :symbol, :unique => true
   end
 end

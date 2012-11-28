@@ -46,6 +46,6 @@ ActiveRecord::Schema.define(:version => 20121123011756) do
     t.datetime "updated_at", :null => false
   end
 
-  add_index "securities", ["symbol"], :name => "index_securities_on_symbol"
+  add_index "securities", ["symbol"], :name => "index_securities_on_symbol", :unique => true
 
 end

@@ -16,5 +16,6 @@ class CreateBars < ActiveRecord::Migration
     end
     add_index :bars, :security_id
     add_index :bars, :date
+    # Bar.connection.execute("CREATE UNIQUE INDEX unique_bars ON bars(security_id, period, date, started_at, ended_at)")
   end
 end
