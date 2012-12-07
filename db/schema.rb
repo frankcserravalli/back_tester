@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121123011756) do
+ActiveRecord::Schema.define(:version => 20121203014445) do
 
   create_table "bars", :force => true do |t|
     t.integer  "security_id"
@@ -32,9 +32,29 @@ ActiveRecord::Schema.define(:version => 20121123011756) do
   add_index "bars", ["date"], :name => "index_bars_on_date"
   add_index "bars", ["security_id"], :name => "index_bars_on_security_id"
 
+  create_table "index_securities", :force => true do |t|
+    t.integer  "index_id"
+    t.integer  "security_id"
+    t.float    "weight"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "index_securities", ["index_id"], :name => "index_index_securities_on_index_id"
+  add_index "index_securities", ["security_id"], :name => "index_index_securities_on_security_id"
+
+  create_table "indices", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "indices", ["name"], :name => "index_indices_on_name"
+
   create_table "securities", :force => true do |t|
     t.string   "symbol"
-    t.string   "type"
+    t.string   "description"
+    t.string   "security_type"
     t.float    "strike"
     t.string   "currency"
     t.integer  "multiplier"
@@ -42,8 +62,8 @@ ActiveRecord::Schema.define(:version => 20121123011756) do
     t.string   "exchange"
     t.string   "rights"
     t.boolean  "is_active"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   add_index "securities", ["symbol"], :name => "index_securities_on_symbol", :unique => true

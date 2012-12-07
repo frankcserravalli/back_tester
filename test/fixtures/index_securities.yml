@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  index_id: 1
+  security_id: 1
+  weight: 1.5
+
+two:
+  index_id: 1
+  security_id: 1
+  weight: 1.5

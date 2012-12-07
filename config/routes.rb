@@ -1,4 +1,7 @@
 BackTester::Application.routes.draw do
+  resources :indices
+
+
   resources :bars
 
 

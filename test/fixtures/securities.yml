@@ -1,8 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  symbol: MyString
-  type: 
+  symbol: SPY
+  security_type: 
   strike: 1.5
   currency: MyString
   multiplier: 1
@@ -12,8 +12,8 @@ one:
   is_active: false
 
 two:
-  symbol: MyString
-  type: 
+  symbol: DIA
+  security_type: 
   strike: 1.5
   currency: MyString
   multiplier: 1
