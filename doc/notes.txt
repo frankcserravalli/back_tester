@@ -1,0 +1,8 @@
+Hold the market time series data in an Array of Hashes
+
+Calculate certain indicators, such as moving averages, in a separate Array of values.
+
+Then merge the Hashes?
+
+A strategy tester could then walk through the Array and have all the required values pre-calculated for each bar within the Hash.
+

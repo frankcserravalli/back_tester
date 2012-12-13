@@ -10,20 +10,20 @@ postion_size     = 5000  # size of a single position
 @model_portfolio = {}
 @portfolio       = {}
 
-@spy = Security.where("symbol = 'DIA'").first
+@spy = Security.where("ticker = 'DIA'").first
 @trading_days = @spy.bars.select('date').where(["date >= ?", analysis_start_date]).map{|b| b.date.to_s(:db)}
 puts "#{@trading_days.count} trading days in this analysis"
 
 @index = Index.where(["name like ?", 'Dow Industrials']).first
-@symbols = @index.securities.map{|s| s.symbol}.sort
-puts @symbols.sort.join(', ')
+@tickers = @index.securities.map{|s| s.ticker}.sort
+puts @tickers.sort.join(', ')
 
-# matrix[:symbol][:trading_date][:close => closing price, :days_ago => change over/under days ago] ?
+# matrix[:ticker][:trading_date][:close => closing price, :days_ago => change over/under days ago] ?
 
 @trading_days.each do |td|
   @matrix[td] = {}
-  @symbols.each do |symbol|
-    @matrix[td][symbol] = Security.find_by_symbol(symbol).bars.where(["date = ?", td]).first.close
+  @tickers.each do |ticker|
+    @matrix[td][ticker] = Security.find_by_ticker(ticker).bars.where(["date = ?", td]).first.close
   end
 end
 
@@ -40,10 +40,10 @@ end
     # puts days_ago
     
     @gains[@trading_days[i]] = {}
-    @symbols.each do |symbol|
-      # puts "#{symbol} for #{@trading_days[i]}: #{today[symbol]} - #{days_ago[symbol]} = #{today[symbol] - days_ago[symbol]}"
-      @gains[@trading_days[i]][symbol] = (today[symbol] - days_ago[symbol].to_f)
-    end # @symbols.each
+    @tickers.each do |ticker|
+      # puts "#{ticker} for #{@trading_days[i]}: #{today[ticker]} - #{days_ago[ticker]} = #{today[ticker] - days_ago[ticker]}"
+      @gains[@trading_days[i]][ticker] = (today[ticker] - days_ago[ticker].to_f)
+    end # @tickers.each
   end # if
 end # each
 

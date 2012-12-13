@@ -17,8 +17,9 @@ class SecuritiesControllerTest < ActionController::TestCase
   end
 
   test "should create security" do
+    Security.delete_all
     assert_difference('Security.count') do
-      post :create, security: { currency: @security.currency, exchange: @security.exchange, expiry: @security.expiry, is_active: @security.is_active, multiplier: @security.multiplier, rights: @security.rights, strike: @security.strike, symbol: @security.symbol, type: @security.type }
+      post :create, security: { currency: @security.currency, exchange: @security.exchange, expiry: @security.expiry, is_active: @security.is_active, multiplier: @security.multiplier, rights: @security.rights, strike: @security.strike, ticker: @security.ticker, security_type: @security.security_type }
     end
 
     assert_redirected_to security_path(assigns(:security))
@@ -35,7 +36,7 @@ class SecuritiesControllerTest < ActionController::TestCase
   end
 
   test "should update security" do
-    put :update, id: @security, security: { currency: @security.currency, exchange: @security.exchange, expiry: @security.expiry, is_active: @security.is_active, multiplier: @security.multiplier, rights: @security.rights, strike: @security.strike, symbol: @security.symbol, type: @security.type }
+    put :update, id: @security, security: { currency: @security.currency, exchange: @security.exchange, expiry: @security.expiry, is_active: @security.is_active, multiplier: @security.multiplier, rights: @security.rights, strike: @security.strike, ticker: @security.ticker, security_type: @security.security_type }
     assert_redirected_to security_path(assigns(:security))
   end
 

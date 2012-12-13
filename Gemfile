@@ -1,7 +1,16 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.9'
-gem 'mysql2'
+# gem 'mysql2'
+# gem 'jdbc-mysql'
+
+if defined?(JRUBY_VERSION)
+  gem 'activerecord-jdbc-adapter' #, '=1.1.3'
+  gem 'jdbc-mysql', :require=>false
+  gem 'activerecord-jdbcmysql-adapter' #, '=1.1.3'
+else
+  gem 'mysql2'
+end
 
 gem 'will_paginate', '~> 3.0'      # For pagination
 gem 'bootstrap-will_paginate'      # To fix WillPaginate and TwitterBootstrap
@@ -13,9 +22,13 @@ group :assets do
   # gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
 
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer', :platforms => :ruby
-
+  # See https://github.com/sstephenson/execjs readme for more supported runtimes
+  if defined?(JRUBY_VERSION)
+    gem 'therubyrhino' # For JRuby
+  else
+    gem 'therubyracer', :platforms => :ruby
+  end
+  
   gem 'uglifier', '>= 1.0.3'
   # For Twitter Bootstrap:
   gem 'less' #, '2.0.11'

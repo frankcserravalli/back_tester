@@ -1,7 +1,7 @@
 class CreateSecurities < ActiveRecord::Migration
   def change
     create_table :securities do |t|
-      t.string  :symbol      # symbol
+      t.string  :ticker      # ticker symbol
       t.string  :description # Description of the Security
       t.string  :security_type        # security type. e.g. equity, forex, option, futures
       t.float   :strike      # strike price for options
@@ -13,6 +13,6 @@ class CreateSecurities < ActiveRecord::Migration
       t.boolean :is_active   # true if we want to gather quotes automatically
       t.timestamps
     end
-    add_index :securities, :symbol, :unique => true
+    add_index :securities, :ticker, :unique => true
   end
 end

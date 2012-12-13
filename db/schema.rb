@@ -20,13 +20,14 @@ ActiveRecord::Schema.define(:version => 20121203014445) do
     t.float    "high"
     t.float    "low"
     t.float    "close"
+    t.float    "adjusted_close"
     t.float    "wap"
     t.integer  "volume"
     t.date     "date"
     t.time     "started_at"
     t.time     "ended_at"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   add_index "bars", ["date"], :name => "index_bars_on_date"
@@ -52,7 +53,7 @@ ActiveRecord::Schema.define(:version => 20121203014445) do
   add_index "indices", ["name"], :name => "index_indices_on_name"
 
   create_table "securities", :force => true do |t|
-    t.string   "symbol"
+    t.string   "ticker"
     t.string   "description"
     t.string   "security_type"
     t.float    "strike"
@@ -66,6 +67,6 @@ ActiveRecord::Schema.define(:version => 20121203014445) do
     t.datetime "updated_at",    :null => false
   end
 
-  add_index "securities", ["symbol"], :name => "index_securities_on_symbol", :unique => true
+  add_index "securities", ["ticker"], :name => "index_securities_on_ticker", :unique => true
 
 end

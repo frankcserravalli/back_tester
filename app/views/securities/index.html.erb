@@ -6,8 +6,8 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:symbol) %></th>
-      <th><%= model_class.human_attribute_name(:type) %></th>
+      <th><%= model_class.human_attribute_name(:ticker) %></th>
+      <th><%= model_class.human_attribute_name(:security_type) %></th>
       <th><%= model_class.human_attribute_name(:strike) %></th>
       <th><%= model_class.human_attribute_name(:currency) %></th>
       <th><%= model_class.human_attribute_name(:multiplier) %></th>
@@ -23,8 +23,8 @@
     <% @securities.each do |security| %>
       <tr>
         <td><%= link_to security.id, security_path(security) %></td>
-        <td><%= security.symbol %></td>
-        <td><%= security.type %></td>
+        <td><%= security.ticker %></td>
+        <td><%= security.security_type %></td>
         <td><%= security.strike %></td>
         <td><%= security.currency %></td>
         <td><%= security.multiplier %></td>

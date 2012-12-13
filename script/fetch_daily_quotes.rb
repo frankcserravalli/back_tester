@@ -3,8 +3,8 @@ require File.expand_path('../../config/environment',  __FILE__)
 require 'yahoo_finance'
 
 Security.where("is_active = 1").each do |sec|
-  puts "Fetching #{sec.symbol}"
-  yahoo = YahooQuotes.new(:symbol => sec.symbol)
+  puts "Fetching #{sec.ticker}"
+  yahoo = YahooQuotes.new(:symbol => sec.ticker)
   yahoo.fetch.each do |y|
     puts "\tProcessing bar for #{y.trade_date}"
     sec.bars.create(
@@ -13,6 +13,7 @@ Security.where("is_active = 1").each do |sec|
       :high   => y.high,
       :low    => y.low,
       :close  => y.close,
+      # :adjusted_close => y.adjusted_close,
       :volume => y.volume,
       :period => :daily
     )

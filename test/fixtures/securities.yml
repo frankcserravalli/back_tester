@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  symbol: SPY
+  ticker: QQQ
   security_type: 
   strike: 1.5
   currency: MyString
@@ -12,7 +12,7 @@ one:
   is_active: false
 
 two:
-  symbol: DIA
+  ticker: DIA
   security_type: 
   strike: 1.5
   currency: MyString

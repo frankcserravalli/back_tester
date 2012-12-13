@@ -7,5 +7,5 @@ one:
 
 two:
   index_id: 1
-  security_id: 1
+  security_id: 2
   weight: 1.5

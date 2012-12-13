@@ -7,6 +7,7 @@ class CreateBars < ActiveRecord::Migration
       t.float   :high
       t.float   :low
       t.float   :close
+      t.float   :adjusted_close
       t.float   :wap
       t.integer :volume
       t.date    :date        # the market date
