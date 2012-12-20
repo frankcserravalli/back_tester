@@ -42,6 +42,15 @@ gem 'ib-ruby'
 gem 'yahoo-finance'
 gem 'lazy_high_charts'
 
+gem 'technical_analysis', :git => 'git://github.com/brianlong/technical_analysis.git'
+
+group :development do
+  
+  # For local working area:
+  gem 'rmagick', :require => false
+  gem 'gruff'
+end
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

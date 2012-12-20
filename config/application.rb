@@ -9,6 +9,8 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
+require File.expand_path('../../lib/enumerable_extensions', __FILE__)
+
 module BackTester
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

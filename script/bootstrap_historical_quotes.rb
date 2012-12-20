@@ -5,7 +5,7 @@ require 'yahoo_finance'
 Bar.delete_all
 Security.where("is_active = 1").each do |sec|
   puts "Fetching #{sec.ticker}"
-  yahoo = YahooQuotes.new(:symbol => sec.ticker, :start_at => Date.new(2011, 1, 9)) #Date.today - 50.years)
+  yahoo = YahooQuotes.new(:symbol => sec.ticker, :start_at => Date.today - 50.years)
   
   yahoo.fetch.each do |y|
     sec.bars.create(

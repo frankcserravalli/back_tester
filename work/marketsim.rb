@@ -13,7 +13,6 @@ include ActionView::Helpers::NumberHelper
 @cash = @initial_balance
 @portfolio = {}
 @daily_values = {}
-@daily_returns = {}
 
 @spy = Security.where("ticker = 'SPY'").first
 
@@ -69,18 +68,12 @@ puts "Trading Days:"
 end # @trading_days.each
 puts "Ending Value: #{number_to_currency @cash}"
 puts ""
-puts "Daily Values:"
-previous_value = @initial_balance
-@daily_values.each do |k, v|
-  puts "\t#{k}: #{v}"
-  @daily_returns[k] = v - previous_value
-  previous_value = v
+puts "Writing daily values to #{@output_file}"
+
+CSV.open(@output_file, 'wb', :row_sep => "\r\n") do |csv|
+  @daily_values.each do |k, v|
+    csv << [k,v]
+  end
 end
-
-# puts "Daily Returns:"
-# @daily_returns.each do |k, v|
-#   puts "\t#{k}: #{v}"
-# end
-
 puts ""
 

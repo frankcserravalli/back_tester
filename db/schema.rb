@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(:version => 20121203014445) do
 
   create_table "bars", :force => true do |t|
     t.integer  "security_id"
-    t.string   "period"
+    t.string   "period",                                            :null => false
     t.float    "open"
     t.float    "high"
     t.float    "low"
@@ -23,14 +23,15 @@ ActiveRecord::Schema.define(:version => 20121203014445) do
     t.float    "adjusted_close"
     t.float    "wap"
     t.integer  "volume"
-    t.date     "date"
-    t.time     "started_at"
-    t.time     "ended_at"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.date     "date",                                              :null => false
+    t.time     "started_at",     :default => '2000-01-01 00:00:00', :null => false
+    t.time     "ended_at",       :default => '2000-01-01 00:00:00', :null => false
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
   end
 
   add_index "bars", ["date"], :name => "index_bars_on_date"
+  add_index "bars", ["security_id", "period", "date", "started_at", "ended_at"], :name => "unique_bars", :unique => true
   add_index "bars", ["security_id"], :name => "index_bars_on_security_id"
 
   create_table "index_securities", :force => true do |t|
