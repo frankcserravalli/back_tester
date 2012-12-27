@@ -13,7 +13,7 @@ executions = []
 
 ['AAPL', 'SPY', 'DIA', 'QQQ'].each do |t| # 
 # Index.where(["name like ?", 'Dow Industrials']).first.securities.map{ |s| s.ticker }.each do |t|
-  big[t] = Security.where(["ticker = ?", t]).first.bars.where(["date between ? and ?", '2011-01-01', '2012-12-31']).order('date asc').map{ |b| {:ticker => t, :date => b.date.to_s(:db), :open => b.open, :high => b.high, :low => b.low, :close => b.close} }
+  big[t] = Security.where(["ticker = ?", t]).first.bars.where(["date between ? and ?", '2000-01-01', '2012-12-31']).order('date asc').map{ |b| {:ticker => t, :date => b.date.to_s(:db), :open => b.open, :high => b.high, :low => b.low, :close => b.close} }
   big["#{t}_pc_slow"] = price_channel(big[t], :length => 253, :offset => -1)
   big["#{t}_pc_fast"] = price_channel(big[t], :length => 21, :offset => -1)
 

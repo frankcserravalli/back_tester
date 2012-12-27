@@ -42,7 +42,7 @@ gem 'ib-ruby'
 gem 'yahoo-finance'
 gem 'lazy_high_charts'
 
-gem 'technical_analysis', :git => 'git://github.com/brianlong/technical_analysis.git'
+gem 'technical_analysis', '0.0.6', :git => 'git://github.com/brianlong/technical_analysis.git'
 
 group :development do
   

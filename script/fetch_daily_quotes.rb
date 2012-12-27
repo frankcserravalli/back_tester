@@ -19,6 +19,6 @@ Security.where("is_active = 1").each do |sec|
       :adjusted_close => y.adjusted_close,
       :volume => y.volume,
       :period => :daily
-    )
+    ) rescue nil
   end
 end

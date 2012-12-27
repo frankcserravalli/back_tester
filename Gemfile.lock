@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/brianlong/technical_analysis.git
-  revision: da79818264ad469424cf53da1c3d065df8d0b851
+  revision: 9ddc668e2cd2eddce33395789d1ebd05ae28acc4
   specs:
-    technical_analysis (0.0.3)
+    technical_analysis (0.0.6)
 
 GEM
   remote: https://rubygems.org/
@@ -151,7 +151,7 @@ DEPENDENCIES
   mysql2
   rails (= 3.2.9)
   rmagick
-  technical_analysis!
+  technical_analysis (= 0.0.6)!
   therubyracer
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
