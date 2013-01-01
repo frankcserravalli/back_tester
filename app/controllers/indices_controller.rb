@@ -1,4 +1,45 @@
 class IndicesController < ApplicationController
+  # GET /indices/:id/rankings
+  def rankings
+    @index = Index.find(params[:id])
+    @returns = {}
+    @securities = {}
+    
+    @index.securities.each do |s|
+      @securities[s.ticker.upcase] = s
+      @returns[s.ticker.upcase] =  s.return_for_ranking(params)
+    end
+    @returns.delete_if { |k, v| v.nil? }
+    @returns = @returns.sort_by{|k,v| v.to_f}.reverse
+  end
+  
+  def top_25
+    @today = params[:date].to_date rescue Date.today
+    @seven_days_ago = @today - 7.days
+    @securities = {}
+    
+    @index = Index.find(params[:id])
+    @returns = {}
+    @index.securities.each do |s|
+      @securities[s.ticker.upcase] = s
+      @returns[s.ticker.upcase] =  s.return_for_ranking(:date => @today)
+    end
+    @returns.delete_if { |k, v| v.nil? }
+    @returns = @returns.sort_by{|k,v| v.to_f}.reverse[0..24]
+    
+    
+    @last_week = {}
+    @index.securities.each do |s|
+      @securities[s.ticker.upcase] = s unless @securities[s.ticker.upcase]
+      @last_week[s.ticker.upcase] =  s.return_for_ranking(:date => @seven_days_ago)
+    end
+    @last_week.delete_if { |k, v| v.nil? }
+    @last_week = @last_week.sort_by{|k,v| v.to_f}.reverse[0..24]
+    
+    @additions    = @returns.map{|k,v| k} - @last_week.map{|k,v| k }
+    @subtractions = @last_week.map{|k,v| k} - @returns.map{|k,v| k }
+  end
+  
   # GET /indices
   # GET /indices.json
   def index

@@ -32,3 +32,35 @@ include TechnicalAnalysis
 #
 # Test the annual return rule to see if better results come from trailing
 # 13 or 26 week annual_return stops.
+
+@trading_days = Security.find_by_ticker('SPY').bars.where(["date >= ?", Date.today - 6.months]).order('date asc').map{|s| s.date.to_s(:db)}
+# puts @trading_days.inspect
+@index = Index.where(["name like ?", 'SPDR ETFs']).first
+@returns = {}
+@portfolio = []
+
+i = 0
+@trading_days.each do |d|  
+  @index.securities.each do |s|
+    @returns[s.ticker.upcase] =  s.return_for_ranking(:date => d)
+  end
+  p = {}
+  p[:date] = d
+  p[:tickers] = []
+  @returns.sort_by{|k,v| v}.reverse[0..23].each do |k,v|
+    p[:tickers] << k
+  end
+  # puts p.inspect
+  @portfolio[i] = p
+  if i > 0
+    @portfolio[i][:additions] = @portfolio[i][:tickers] - @portfolio[i-1][:tickers]
+    @portfolio[i][:subtractions] = @portfolio[i-1][:tickers] - @portfolio[i][:tickers]
+  end
+  puts @portfolio[i].inspect
+  i += 1
+end
+
+# (1..@portfolio.length-1).each do |p|
+#   
+#   puts @portfolio[p]
+# end

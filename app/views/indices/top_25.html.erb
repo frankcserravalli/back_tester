@@ -1,0 +1,21 @@
+<h1>Rankings for <%= @index.name %> on <%= @today %></h1>
+<%= render :partial => 'returns_table' %>
+
+<p>&nbsp;</p>
+<p>Additions: <%= @additions.inspect %></p>
+<p>Subtractions: <%= @subtractions.inspect %></p>
+<h1>Rankings for <%= @index.name %> on <%= @seven_days_ago %></h1>
+<table>
+  <tr>
+    <th>Rank</th><th>Ticker</th><th>Description</th><th>Relative Strength</th></tr>
+  <% i = 0 %>
+  <% @last_week.each do |k,v| %>
+    <% i += 1 %>
+    <tr>
+      <td><%= i %></td>
+      <td><%= k %></td>
+      <td><%= @securities[k].description %></td>
+      <td><%= number_to_percentage(v * 100.0) %></td>
+    </tr>
+  <% end %>
+</table>

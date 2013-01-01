@@ -2,7 +2,7 @@ ENV["RAILS_ENV"] = "development" # ARGV[0].nil? ? "production" : "development"
 require File.expand_path('../../config/environment',  __FILE__)
 require 'yahoo_finance'
 
-@last_day = Security.where(["ticker = 'SPY'"]).first.bars.order('date asc').last.date
+@last_day = '2012-12-30'.to_date #Security.where(["ticker = 'SPY'"]).first.bars.order('date asc').last.date
 puts "Updating since #{@last_day}"
 
 Security.where("is_active = 1").each do |sec|

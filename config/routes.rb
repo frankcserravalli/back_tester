@@ -1,12 +1,14 @@
 BackTester::Application.routes.draw do
-  resources :indices
-
+  resources :indices do
+    member do
+      get 'rankings'
+      get 'top_25'
+    end # member
+  end # resources
 
   resources :bars
 
-
   resources :securities
-
 
   # get "home/index"
 

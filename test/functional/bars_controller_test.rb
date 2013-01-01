@@ -18,7 +18,7 @@ class BarsControllerTest < ActionController::TestCase
 
   test "should create bar" do
     assert_difference('Bar.count') do
-      post :create, bar: { close: @bar.close, high: @bar.high, low: @bar.low, open: @bar.open, period: @bar.period, security_id: @bar.security_id }
+      post :create, bar: { close: @bar.close, high: @bar.high, low: @bar.low, open: @bar.open, period: @bar.period, security_id: @bar.security_id, date: Date.today }
     end
 
     assert_redirected_to bar_path(assigns(:bar))

@@ -12,7 +12,7 @@ class CreateBars < ActiveRecord::Migration
       t.integer :volume
       t.date    :date, :null => false        # the market date
       t.time    :started_at, :null => false, :default => '00:00:00'  # time the bar starts if less than a day
-      t.time    :ended_at, :null => false, :default => '00:00:00'    # time the bar ends if less than a day
+      t.time    :ended_at, :null => false, :default => '23:59:59'    # time the bar ends if less than a day
       t.timestamps
     end
     add_index :bars, :security_id
