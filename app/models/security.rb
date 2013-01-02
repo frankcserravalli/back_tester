@@ -1,4 +1,6 @@
 class Security < ActiveRecord::Base
+  include TechnicalAnalysis
+  
   attr_accessible :currency, :exchange, :expiry, :is_active, :multiplier, :rights, :strike, :ticker, :security_type, :description
   has_many :bars, :dependent => :destroy
   has_many :index_securities
@@ -15,5 +17,16 @@ class Security < ActiveRecord::Base
     nil
   end
   
+  def last_price
+    bars.order('date desc').first.close
+  end
   
+  def price_channel(params = {})
+    length = params[:length] || 21 # default is approximately 1 month
+    pc = {}
+    series = bars.order('date desc').limit(length).map{|bar| {:date => bar.date, :high => bar.high, :low => bar.low}}
+    pc[:upper] = series.map{|b| b[:high]}.max
+    pc[:lower] = series.map{|b| b[:low]}.min
+    pc
+  end
 end

@@ -4,6 +4,8 @@
     <th>Ticker</th>
     <th>Description</th>
     <th>Ranked Return</th>
+    <th>Last Price</th>
+    <th>PC21</th>
   </tr>
   <% i = 0 %>
   <% @returns.each do |k,v| %>
@@ -13,6 +15,8 @@
       <td><%= k %></td>
       <td><%= @securities[k].description %></td>
       <td><%= number_to_percentage(v * 100.0) %></td>
+      <td><%= number_to_currency(@securities[k].last_price) %></td>
+      <td><%= number_to_currency(@securities[k].price_channel(:length => 21)[:upper]) %></td>
     </tr>  
   <% end # each %>
 </table>
